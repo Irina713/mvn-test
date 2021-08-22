@@ -42,24 +42,31 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <formats>
-                        <format>xml</format>
-                    </formats>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>cobertura</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>cobertura-maven-plugin</artifactId>
+            <version>2.5.1</version>
+            <configuration>
+                <formats>
+                    <format>xml</format>
+                    <format>html</format>
+                </formats>
+                <instrumentation>
+                    <excludes>
+                        <exclude>**/*Test.class</exclude>
+                        <exclude>**/Mock*.class</exclude>
+                    </excludes>
+                </instrumentation>
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>cobertura</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -68,5 +75,14 @@
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.maven.plugins</groupId>
+            <artifactId>code-coverage-maven-plugin</artifactId>
+            <version>1.0.1.Final</version>
+            <type>maven-plugin</type>
+        </dependency>
+
     </dependencies>
+
+
 </project>
